@@ -8,7 +8,7 @@ This project examines coffee bean sales data to uncover business insights using 
 
 Three interconnected datasets form the foundation of this analysis:
 
-- **Orders Dataset** (1000 records): Contains primary transaction data.
+- **Orders Dataset** (1000 records): Contains primary transaction data
   
 - **Customers Dataset**: Holds customer profiles and demographics
   
@@ -182,15 +182,27 @@ The expanded dataset now displays clear, descriptive names:
 
 #### 2.5 Date Format Standardization
 
-Apply the international date format `dd-mmm-yyyy` to the `DtOrder` column to replace the American-style format (MM/DD/YYYY). This standardization improves date readability and clarity.
+Apply the international date format `dd-mmm-yyyy` to the `DtOrder` column to replace the American-style format (MM/DD/YYYY).
 
-Example transformation:
-- Before: 9/5/2019
-- After: 05-Sep-2019
+Before:
+```
+9/5/2019
+```
+
+After:
+```
+05-Sep-2019
+```
+
+The transformed data displays dates clearly:
 
 | OrderID | DtOrder | CustomerName | CoffeeTypeName | RoastTypeName | AmtSales |
 |---------|---------|--------------|----------------|---------------|-----------|
 | QEV-37451-860 | 05-Sep-2019 | Aloisia Allner | Robusta | Medium | $19.90 |
+
+Final `Orders` table appearance:
+
+![Orders Table](images/02-01_data.png)
 
 ## Technical Requirements 💻
 
