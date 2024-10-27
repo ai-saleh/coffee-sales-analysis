@@ -8,19 +8,13 @@ This project examines coffee bean sales data to uncover business insights using 
 
 Three interconnected datasets form the foundation of this analysis:
 
-- **Orders Dataset** (1000 records)
-  - Contains primary transaction data: order IDs, dates, and quantities
-  - Features multiple line items per order ID for granular purchase analysis
+- **Orders Dataset** (1000 records): Contains primary transaction data.
   
-- **Customers Dataset**
-  - Holds customer profiles and demographics
-  - Includes loyalty program participation status
+- **Customers Dataset**: Holds customer profiles and demographics
   
-- **Products Dataset**
-  - Stores coffee product specifications
-  - Contains pricing structure and profit margins
+- **Products Dataset**: Stores coffee product specifications
 
-The `CustomerID` and `ProductID` foreign keys link these datasets, enabling multi-dimensional analysis across the business operation.
+The `CustomerID` and `ProductID` keys link these datasets.
 
 ## Methodology
 
@@ -28,7 +22,7 @@ The `CustomerID` and `ProductID` foreign keys link these datasets, enabling mult
 
 #### 1.1 Data Import Strategy
 
-Power Query serves as the primary data handling tool. However, given the relatively small size of our datasets, alternative methods would be equally effective.
+Power Query serves as the primary data handling tool. However, given the relatively small size of the datasets, alternative methods would be equally effective.
 
 - **Source Files** (located in 'datasets' folder):
   - orders.csv
@@ -96,19 +90,19 @@ Important: Transform `IsLoyalty` from "Yes"/"No" to TRUE/FALSE in Power Query fo
 
 #### 2.1 Customer Data Integration
 
-XLOOKUP functions populate the Orders table with customer information:
+`XLOOKUP` functions populate the `Orders` table with customer information:
 
-**Customer Name Integration:**
+**`CustomerName` Integration:**
 ```excel
 =XLOOKUP([@[FK_CustomerID]],Customers[CustomerID],Customers[CustomerName],,0)
 ```
 
-**Email Integration:**
+**`Email` Integration:**
 ```excel
 =XLOOKUP([@[FK_CustomerID]],Customers[CustomerID],Customers[Email],,0)
 ```
 
-**Country Integration:**
+**`Country` Integration:**
 ```excel
 =XLOOKUP([@[FK_CustomerID]],Customers[CustomerID],Customers[Country],,0)
 ```
@@ -122,7 +116,7 @@ Results show comprehensive transaction details:
 
 #### 2.2 Product Data Integration
 
-A dynamic INDEX-MATCH formula integrates product data efficiently:
+The following dynamic `INDEX-MATCH` formula integrates product data:
 
 ```excel
 =INDEX(Products,
@@ -130,26 +124,73 @@ A dynamic INDEX-MATCH formula integrates product data efficiently:
     MATCH(Orders[[#Headers],[CoffeeType]],Products[#Headers],0))
 ```
 
-**Formula Components:**
-1. `INDEX(Products,...)`: Points to the Products table
-2. First `MATCH`: Locates product rows via FK_ProductID
-3. Second `MATCH`: Finds correct columns dynamically
+**Formula Breakdown:**
+1. `INDEX(Products,...)` references the entire Products table as a dynamic array
+2. First `MATCH` uses absolute references to find product rows:
+   - `Orders[@[FK_ProductID]:[FK_ProductID]]` locks the lookup value
+   - `Products[[ProductID]:[ProductID]]` locks the lookup range
+3. Second `MATCH` uses relative references for column headers:
+   - `Orders[[#Headers],[CoffeeType]]` changes with each column
+   - `Products[#Headers]` finds matching column names
 
-Copy this formula across product-related columns: `CoffeeType`, `RoastType`, `SizeKg`, and `AmtUnitPrice`.
+This formula structure allows efficient copying across all product columns (`CoffeeType`, `RoastType`, `SizeKg`, `AmtUnitPrice`) while maintaining correct references.
 
 #### 2.3 Sales Calculation
 
-Multiply unit price by quantity to calculate total sales:
+Multiply unit price by quantity to calculate total sales column `AmtSales`:
 
 ```excel
 =[@AmtUnitPrice] * [@Quantity]
 ```
 
-The final integrated dataset displays complete transaction information:
+The integrated dataset displays complete transaction information:
 
 | OrderID       | DtOrder  | FK_CustomerID  | FK_ProductID | Quantity | CustomerName   | Email             | Country       | CoffeeType | RoastType | SizeKg | AmtUnitPrice | AmtSales |
 |---------------|----------|----------------|--------------|----------|----------------|-------------------|---------------|------------|-----------|--------|--------------|----------|
 | QEV-37451-860 | 9/5/2019 | 17670-51384-MA | R-M-1        | 2        | Aloisia Allner | aallner0@lulu.com | United States | Rob        | M         | 1.0    | $9.95        | $19.90   |
+
+#### 2.4 Coffee Type and Roast Type Name Expansion
+
+Add descriptive names for coffee and roast types by creating two new columns:
+
+**Coffee Type Names**
+Create `CoffeeTypeName` using SWITCH to convert abbreviations to full names:
+```excel
+=SWITCH([@CoffeeType],
+    "Rob", "Robusta",
+    "Exc", "Excelsa", 
+    "Ara", "Arabica",
+    "Lib", "Liberica")
+```
+
+**Roast Type Names**
+Create `RoastTypeName` to expand single-letter codes:
+```excel
+=SWITCH([@RoastType],
+    "L", "Light",
+    "M", "Medium",
+    "D", "Dark")
+```
+
+The expanded dataset now displays clear, descriptive names:
+
+| OrderID | DtOrder | CoffeeType | CoffeeTypeName | RoastType | RoastTypeName | AmtSales |
+|---------|---------|------------|----------------|-----------|---------------|-----------|
+| QEV-37451-860 | 9/5/2019 | Rob | Robusta | M | Medium | $19.90 |
+| QEV-37451-860 | 9/5/2019 | Exc | Excelsa | M | Medium | $41.25 |
+| FAA-43335-268 | 6/17/2021 | Ara | Arabica | L | Light | $12.95 |
+
+#### 2.5 Date Format Standardization
+
+Apply the international date format `dd-mmm-yyyy` to the `DtOrder` column to replace the American-style format (MM/DD/YYYY). This standardization improves date readability and clarity.
+
+Example transformation:
+- Before: 9/5/2019
+- After: 05-Sep-2019
+
+| OrderID | DtOrder | CustomerName | CoffeeTypeName | RoastTypeName | AmtSales |
+|---------|---------|--------------|----------------|---------------|-----------|
+| QEV-37451-860 | 05-Sep-2019 | Aloisia Allner | Robusta | Medium | $19.90 |
 
 ## Technical Requirements 💻
 
