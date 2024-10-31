@@ -249,30 +249,34 @@ Check for duplicate records using Excel's Remove Duplicates feature:
 
 Result: No duplicate records were found in the dataset, indicating clean data entry and collection practices.
 
-### 3. Dashboard Creation and Sales Analysis
+### 3. Initial Dashboard Elements and Sales Analysis
 
-Dashboard elements use consistent visual guidelines for a cohesive and professional appearance.
+The initial dashboard components establish core visualizations and maintain consistent styling guidelines for future expansion.
 
 #### 3.1 Pivot Table and Chart Creation
 
-Create a pivot table named `TotalSales` from the `Orders` table with these settings:
+In a new sheet named `TotalSales`, create a pivot table (also named `TotalSales`) from the `Orders` table with the following settings:
 - Add `DtOrder` to rows (group by months and years)
 - Place `CoffeeTypeName` in columns 
-- Set `AmtSales` in values (format with no decimals)
+- Place `AmtSales` in the values field and format it as USD currency without decimals.
 - Apply tabular form layout
 - Remove grand totals and subtotals
 
-| Sum of AmtSales | CoffeeTypeName |         |          |         |
-|-----------------|----------------|---------|----------|---------|
-| Years | Months  | Arabica       | Excelsa | Liberica | Robusta |
-| 2019  | Jan    | 187           | 306     | 213      | 123     |
-|       | Feb    | 252           | 129     | 434      | 172     |
-|       | Mar    | 225           | 349     | 321      | 126     |
-| 2020  | Jan    | 47            | 66      | 275      | 179     |
-|       | Feb    | 745           | 429     | 194      | 430     |
+| Sum of AmtSales |                  | CoffeeTypeName |             |             |            |             |
+|-----------------|------------------|----------------|-------------|-------------|------------|-------------|
+| Years (DtOrder) | Months (DtOrder) | Arabica        | Excelsa     | Liberica    | Robusta    | Grand Total |
+| 2019            | Jan              | $187           | $306        | $213        | $123       | $829        |
+|                 | Feb              | $252           | $129        | $434        | $172       | $987        |
+|                 | Mar              | $225           | $349        | $321        | $126       | $1,021      |
 ...
-| 2022  | Jul    | 247           | 247     | 271      | 142     |
-|       | Aug    | 116           | 41      | 16       | 71      |
+| 2019 Total      |                  | $2,927         | $3,481      | $3,378      | $2,401     | $12,187     |
+...
+| 2020            | Jul              | $431           | $227        | $236        | $415       | $1,309      |
+|                 | Aug              | $23            | $78         | $61         | $140       | $300        |
+...
+| 2020 Total      |                  | $3,356         | $3,663      | $2,604      | $2,493     | $12,118     |
+...
+| **Grand Total** |                  | **$11,768**    | **$12,306** | **$12,054** | **$9,005** | **$45,134** |
 
 Create a line chart from this pivot table. Hide all field buttons, add chart and axis titles, and apply formatting for improved readability.
 
@@ -326,6 +330,54 @@ Configure slicer layouts:
 - `HasLoyalty`: Display 1 column
 
 ![Slicers: Roast Type, Size (Kg), and Loyalty Status](assets/svg/pjct_coffee-sales-analysis/slicer_roast-type-size-and-loyalty-status.svg)
+
+### 4. Dashboard Development
+
+Create focused visualizations to analyze sales patterns across countries and top customers.
+
+#### 4.1 Bar Chart Sales By Country
+
+Create foundation pivot table:
+- Copy `TotalSales` sheet > Rename to `CountryBarChart` > Remove existing visualizations
+- Clear all fields except `AmtSales` in values area
+- Add `Country` to rows > Sort by `Sum of AmtSales` (ascending)
+
+View pivot table results:
+
+| Country         | Sum of AmtSales |
+|-----------------|-----------------|
+| United Kingdom  | $2,799          |
+| Ireland         | $6,697          |
+| United States   | $35,639         |
+| **Grand Total** | **$45,134**     |
+
+Build visualization:
+- Insert bar chart based on pivot table > Hide field buttons > Add title > Configure data labels (outside end)
+
+![Chart: Sales By Country](assets/svg/pjct_coffee-sales-analysis/chart_sales-by-country.svg)
+
+#### 4.2 Top Customers
+
+Configure analysis sheet:
+- Copy `CountryBarChart` sheet > Rename to `TopFiveCustomers`
+- Swap `Country` for `CustomerName` in rows
+- Apply top 5 value filter > Sort by `Sum of AmtSales` (ascending)
+
+Review pivot table output:
+
+| CustomerName    | Sum of AmtSales |
+|-----------------|-----------------|
+| Don Flintiff    | $278            |
+| Nealson Cuttler | $282            |
+| Terri Farra     | $289            |
+| Brenn Dundredge | $307            |
+| Allis Wilmore   | $317            |
+| **Grand Total** | **$1,473**      |
+
+Finalize visualization:
+- Let chart update automatically with new data > Update title to reflect top customer focus
+
+![Chart: Top Five Customers](assets/svg/pjct_coffee-sales-analysis/chart_top-five-customers.svg)
 
 ## Technical Requirements 💻
 
