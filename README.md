@@ -1,12 +1,12 @@
 # Coffee Bean Sales Analysis
 
-## Project Overview 🌟
+## Project Overview
 
 This project examines coffee bean sales data to uncover business insights using Microsoft Excel. The analysis focuses on understanding sales patterns, customer behavior, and product performance through detailed data integration and analysis.
 
 ![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
 
-## Dataset Description 📊
+## Dataset Description
 
 Three core datasets track coffee sales:
 
@@ -399,13 +399,73 @@ The final dashboard combines all visualizations in a cohesive layout with synchr
 
 ![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
 
-## Technical Requirements 💻
+### 6. Key Business Insights
+
+Analysis of the coffee beans sales data reveals several patterns and trends.
+
+#### 6.1 Sales Distribution by Country
+
+The United States dominates the market:
+- US sales reach $35,639, representing 79% of total revenue
+- Ireland follows with $6,697 (15% of total)
+- UK shows the lowest sales at $2,799 (6% of total)
+
+This distribution suggests opportunities for market expansion in the UK and Ireland.
+
+#### 6.2 Customer Analysis
+
+Top customer spending shows modest concentration:
+- Highest spending customer (Allis Wilmore) accounts for $317
+- Top 5 customers range from $278 to $317 in total purchases
+- Small gap between highest and lowest top customers ($39 difference)
+
+The narrow spending range among top customers indicates consistent purchasing patterns without over-reliance on any single buyer.
+
+#### 6.3 Sales Trends Over Time
+
+The timeline reveals distinct patterns:
+- Sales fluctuate seasonally across all coffee types
+- Notable peaks occur around August 2020 and December 2020
+- Most dramatic spikes reach approximately $800-850 in monthly sales
+- Low points typically bottom out around $100-200 monthly
+
+#### 6.4 Product Performance
+
+Coffee type preferences show balanced demand:
+- Excelsa leads with $12,306 in total sales
+- Arabica and Liberica follow closely at $11,768 and $12,054 respectively
+- Robusta shows lower demand at $9,005
+
+#### 6.5 Customer Loyalty Impact
+
+The loyalty program shows mixed results:
+- Program members present across all customer segments
+- No clear correlation between loyalty status and purchase frequency
+- Both loyal and non-loyal customers appear in high-value transactions
+
+#### 6.6 Roast Type Preferences
+
+Analysis by roast type reveals:
+- Medium roast maintains consistent demand
+- Light roast shows higher variability in sales
+- Dark roast performs steadily but generally lower than other types
+
+#### 6.7 Package Size Trends
+
+Size preferences indicate:
+- 0.5kg and 1.0kg packages dominate regular purchases
+- 2.5kg packages show lower but steady sales
+- 0.2kg sizes serve primarily as trial or sample purchases
+
+These insights provide actionable data for inventory management, marketing focus, and strategic planning.
+
+## Technical Requirements
 
 - Microsoft Excel 2016 or later
 - Power Query enabled
 - Basic Excel formula and data analysis knowledge
 
-## Getting Started 🚀
+## Getting Started
 
 1. Clone the repository
 2. Open the Excel workbook
