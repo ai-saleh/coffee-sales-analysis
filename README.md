@@ -4,7 +4,7 @@
 
 This project examines coffee bean sales data to uncover business insights using Microsoft Excel. The analysis focuses on understanding sales patterns, customer behavior, and product performance through detailed data integration and analysis.
 
-![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
+![Dashboard](assets/png/project/coffee-sales-analysis/dashboard_default.png)
 
 ## Dataset Description
 
@@ -65,7 +65,7 @@ Set column names and data types for each table:
 
 Note: Empty columns for customer and product data will be populated later through lookups. Rename these columns to match their corresponding new names from the customers and products tables.
 
-![Power Query: Orders Table](assets/svg/pjct_coffee-sales-analysis/pquery-table_orders.svg)
+![Power Query: Orders Table](assets/png/project/coffee-sales-analysis/pquery-table_orders.png)
 
 **Customers Table**
 | Column Name | Data Type | Purpose |
@@ -82,7 +82,7 @@ Note: Empty columns for customer and product data will be populated later throug
 
 Note: Convert `HasLoyalty` "Yes"/"No" values to TRUE/FALSE in Power Query.
 
-![Power Query: Customers Table](assets/svg/pjct_coffee-sales-analysis/pquery-table_customers.svg)
+![Power Query: Customers Table](assets/png/project/coffee-sales-analysis/pquery-table_customers.png)
 
 **Products Table**
 | Column Name | Data Type | Purpose |
@@ -95,7 +95,7 @@ Note: Convert `HasLoyalty` "Yes"/"No" values to TRUE/FALSE in Power Query.
 | `AmtPricePer100g` | Currency | Unit price comparison |
 | `AmtProfit` | Currency | Margin per unit |
 
-![Power Query: Products Table](assets/svg/pjct_coffee-sales-analysis/pquery-table_products.svg)
+![Power Query: Products Table](assets/png/project/coffee-sales-analysis/pquery-table_products.png)
 
 ### 2. Data Integration
 
@@ -282,14 +282,14 @@ In a new sheet named `TotalSales`, create a pivot table (also named `TotalSales`
 
 Create a line chart from this pivot table. Hide all field buttons, add chart and axis titles, and apply formatting for improved readability.
 
-![Chart: Total Sales Over Time](assets/svg/pjct_coffee-sales-analysis/chart_total-sales-over-time.svg)
+![Chart: Total Sales Over Time](assets/svg/project/coffee-sales-analysis/chart_total-sales-over-time.svg)
 
 #### 3.2 Timeline Creation
 
 Add a timeline filter using `DtOrder` to analyze data across different periods. Position the customized timeline above the sales chart for easy date range selection.
 
-![Timeline: Order Date](assets/svg/pjct_coffee-sales-analysis/timeline_order-date.svg)
-![Chart: Total Sales Over Time](assets/svg/pjct_coffee-sales-analysis/chart_total-sales-over-time.svg)
+![Timeline: Order Date](assets/png/project/coffee-sales-analysis/timeline_order-date.png)
+![Chart: Total Sales Over Time](assets/svg/project/coffee-sales-analysis/chart_total-sales-over-time.svg)
 
 Filter data by dragging timeline endpoints or selecting specific periods to analyze sales patterns.
 
@@ -331,8 +331,7 @@ Configure slicer layouts:
 - `SizeKg`: Display 2 columns  
 - `HasLoyalty`: Display 1 column
 
-![Slicer: Roast Type](assets/svg/pjct_coffee-sales-analysis/slicer_roast-type.svg)
-![Slicer: Size (Kg)](assets/svg/pjct_coffee-sales-analysis/slicer_size-kg.svg) ![Slicer: Loyalty Status](assets/svg/pjct_coffee-sales-analysis/slicer_loyalty-status.svg)
+![Slicer: Roast Type](assets/png/project/coffee-sales-analysis/slicer_combined.png)
 
 ### 4. Expanding Dashboard Components
 
@@ -357,7 +356,7 @@ View pivot table results:
 Build visualization:
 - Insert bar chart based on pivot table > Hide field buttons > Add title > Configure data labels (outside end)
 
-![Chart: Sales By Country](assets/svg/pjct_coffee-sales-analysis/chart_sales-by-country.svg)
+![Chart: Sales By Country](assets/svg/project/coffee-sales-analysis/chart_sales-by-country.svg)
 
 #### 4.2 Top Customers
 
@@ -380,7 +379,7 @@ Review pivot table output:
 Finalize visualization:
 - Let chart update automatically with new data > Update title to reflect top customer focus
 
-![Chart: Top Five Customers](assets/svg/pjct_coffee-sales-analysis/chart_top-five-customers.svg)
+![Chart: Top Five Customers](assets/svg/project/coffee-sales-analysis/chart_top-five-customers.svg)
 
 ### 5. Finalizing Dashboard and Sales Analysis
 
@@ -397,7 +396,7 @@ Arrange elements:
 
 The final dashboard combines all visualizations in a cohesive layout with synchronized interactive filtering.
 
-![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
+![Dashboard](assets/png/project/coffee-sales-analysis/dashboard_default.png)
 
 ### 6. Key Business Insights
 
