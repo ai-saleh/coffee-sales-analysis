@@ -4,6 +4,8 @@
 
 This project examines coffee bean sales data to uncover business insights using Microsoft Excel. The analysis focuses on understanding sales patterns, customer behavior, and product performance through detailed data integration and analysis.
 
+![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
+
 ## Dataset Description 📊
 
 Three core datasets track coffee sales:
@@ -311,7 +313,7 @@ Final `Orders` table structure:
 | `CustomerName` | Customer name |
 | `Email` | Customer email |
 | `Country` | Customer country |
-| **`HasLoyalty`** | **Loyalty program status** |
+| ***`HasLoyalty`*** | ***Loyalty program status*** |
 | `CoffeeType` | Coffee type |
 | `CoffeeTypeName` | Full coffee type name |
 | `RoastType` | Roast level code |
@@ -329,9 +331,10 @@ Configure slicer layouts:
 - `SizeKg`: Display 2 columns  
 - `HasLoyalty`: Display 1 column
 
-![Slicers: Roast Type, Size (Kg), and Loyalty Status](assets/svg/pjct_coffee-sales-analysis/slicer_roast-type-size-and-loyalty-status.svg)
+![Slicer: Roast Type](assets/svg/pjct_coffee-sales-analysis/slicer_roast-type.svg)
+![Slicer: Size (Kg)](assets/svg/pjct_coffee-sales-analysis/slicer_size-kg.svg) ![Slicer: Loyalty Status](assets/svg/pjct_coffee-sales-analysis/slicer_loyalty-status.svg)
 
-### 4. Dashboard Development
+### 4. Expanding Dashboard Components
 
 Create focused visualizations to analyze sales patterns across countries and top customers.
 
@@ -378,6 +381,23 @@ Finalize visualization:
 - Let chart update automatically with new data > Update title to reflect top customer focus
 
 ![Chart: Top Five Customers](assets/svg/pjct_coffee-sales-analysis/chart_top-five-customers.svg)
+
+### 5. Finalizing Dashboard and Sales Analysis
+
+Create unified sales dashboard with synchronized filtering capabilities.
+
+#### 5.1 Dashboard Layout
+
+Create dashboard frame:
+- New sheet `Dashboard` > Add title rectangle `Coffee Beans Sales Dashboard` > Apply styling
+
+Arrange elements:
+- Import all charts (`TotalSales` + `CountryBarChart` + `TopFiveCustomers`) > Align to grid > Use margins
+- Link timeline/slicers to all sheets > Test filter synchronization
+
+The final dashboard combines all visualizations in a cohesive layout with synchronized interactive filtering.
+
+![Dashboard](assets/png/pjct_coffee-sales-analysis/dashboard_default.png)
 
 ## Technical Requirements 💻
 
