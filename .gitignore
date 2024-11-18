@@ -1,6 +1,2 @@
-# Helpers
-conventions.md
-data-import.md
-
-# Folders
-documentation
+/vectors
+!/assets/vectors
